@@ -1,0 +1,33 @@
+<h2>Product Inventory Management</h2>
+
+<form>
+  <input type="text" [(ngModel)]="product.productCode" name="code" placeholder="Product Code" required>
+  <input type="text" [(ngModel)]="product.productName" name="name" placeholder="Product Name" required>
+  <input type="text" [(ngModel)]="product.category" name="category" placeholder="Category" required>
+  <input type="number" [(ngModel)]="product.price" name="price" placeholder="Price" required>
+
+  <button type="button" *ngIf="!isEdit" (click)="addProduct()">Add Product</button>
+  <button type="button" *ngIf="isEdit" (click)="updateProduct()">Update Product</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let p of products">
+    <td>{{p.productCode}}</td>
+    <td>{{p.productName}}</td>
+    <td>{{p.category}}</td>
+    <td>{{p.price}}</td>
+    <td>
+      <button (click)="editProduct(p)">Edit</button>
+      <button (click)="deleteProduct(p._id!)">Delete</button>
+    </td>
+  </tr>
+</table>
